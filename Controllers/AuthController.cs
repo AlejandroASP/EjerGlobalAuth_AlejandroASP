@@ -58,7 +58,6 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
             return Ok(token);
         }
         [HttpPost("register")]
-        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] Auth auth)
         {
             if (!ModelState.IsValid)

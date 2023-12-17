@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIMusicaAuth_SerafinParedesAlejandro.Data;
 using APIMusicaAuth_SerafinParedesAlejandro.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
 {
@@ -25,6 +27,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Album>>> GetAlbums()
         {
           if (_context.Albums == null)
@@ -63,6 +66,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize]
         public async Task<ActionResult<Album>> GetAlbum(int id)
         {
           if (_context.Albums == null)
@@ -85,6 +89,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Authorize(Roles = "ADMINISTRADOR")]
         public async Task<IActionResult> PutAlbum(int id, CreateAlbum albumP)
         {
             // recoger todos los datos del album en base al id
@@ -121,6 +126,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Administrador")]
         public async Task<ActionResult<Album>> PostAlbum(CreateAlbum albumP)
         {
           if (_context.Albums == null)
@@ -154,6 +160,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteAlbum(int id)
         {
             if (_context.Albums == null)

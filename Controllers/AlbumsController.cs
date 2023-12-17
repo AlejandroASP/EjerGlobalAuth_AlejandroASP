@@ -89,7 +89,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [Authorize(Roles = "ADMINISTRADOR")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> PutAlbum(int id, CreateAlbum albumP)
         {
             // recoger todos los datos del album en base al id

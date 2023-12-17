@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APIMusicaAuth_SerafinParedesAlejandro.Migrations
 {
-    [DbContext(typeof(UsersContext))]
+    [DbContext(typeof(AuthContext))]
     partial class UsersContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

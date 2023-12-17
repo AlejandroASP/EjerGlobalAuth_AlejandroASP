@@ -64,14 +64,16 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
             {
                 return BadRequest(ModelState);
             }
+            // Comprobación de que el usuario ya existe
             var existingUser = await _userManager.FindByNameAsync(auth.User);
             if (existingUser != null)
             {
                 return BadRequest("El usuario ya existe.");
             }
+
+            // Crear al usuario con el rol por defecto que será usuario/user
             var user = new IdentityUser { UserName = auth.User, NormalizedUserName = auth.User.ToUpper() };
             var result = await _userManager.CreateAsync(user, auth.Password);
-
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "User");

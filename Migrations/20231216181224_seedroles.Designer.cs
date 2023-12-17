@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APIMusicaAuth_SerafinParedesAlejandro.Migrations
 {
-    [DbContext(typeof(UsersContext))]
+    [DbContext(typeof(AuthContext))]
     [Migration("20231216181224_seedroles")]
     partial class seedroles
     {

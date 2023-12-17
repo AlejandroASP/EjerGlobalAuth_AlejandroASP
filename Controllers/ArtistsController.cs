@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIMusicaAuth_SerafinParedesAlejandro.Data;
 using APIMusicaAuth_SerafinParedesAlejandro.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
 {
@@ -25,6 +27,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Artist>>> GetArtists()
         {
           if (_context.Artists == null)
@@ -55,6 +58,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize]
         public async Task<ActionResult<Artist>> GetArtist(int id)
         {
           if (_context.Artists == null)
@@ -77,6 +81,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Authorize(Roles = "Administrador,Manager")]
         public async Task<IActionResult> PutArtist(int id, CreateArtist artistP)
         {
             //guardamos todos los datos de artista en base a la id solicitada
@@ -111,6 +116,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "Administrador,Manager")]
         public async Task<ActionResult<Artist>> PostArtist(CreateArtist artistP)
         {
           if (_context.Artists == null)
@@ -143,6 +149,7 @@ namespace APIMusicaAuth_SerafinParedesAlejandro.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Authorize(Roles = "Administrador,Manager")]
         public async Task<IActionResult> DeleteArtist(int id)
         {
             if (_context.Artists == null)

@@ -13,14 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ChinookContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("ConexionChinook") ?? throw new InvalidOperationException("Connection string 'ConexionChinook'not found.")));
 
-builder.Services.AddDbContext<UsersContext>(options =>
+builder.Services.AddDbContext<AuthContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("UsersDb") ?? 
 throw new InvalidOperationException("Connection string 'UsersContext' not found.")));
 
 builder.Services.AddIdentityCore<IdentityUser>(options =>
  options.SignIn.RequireConfirmedEmail = false)
  .AddRoles<IdentityRole>()
- .AddEntityFrameworkStores<UsersContext>();
+ .AddEntityFrameworkStores<AuthContext>();
 
 builder.Services.AddControllers();
 

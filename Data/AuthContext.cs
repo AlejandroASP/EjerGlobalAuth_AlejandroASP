@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace APIMusicaAuth_SerafinParedesAlejandro.Data
 {
-    public class UsersContext : IdentityDbContext<IdentityUser>
+    public class AuthContext : IdentityDbContext<IdentityUser>
     {
-        public UsersContext(DbContextOptions<UsersContext> options)
+        public AuthContext(DbContextOptions<AuthContext> options)
              : base(options)
         {
         }
